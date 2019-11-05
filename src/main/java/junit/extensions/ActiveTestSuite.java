@@ -1,5 +1,8 @@
 package junit.extensions;
 
+import java.lang.System.Logger.Level;
+import java.util.logging.Logger;
+
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestResult;
@@ -58,7 +61,9 @@ public class ActiveTestSuite extends TestSuite {
             try {
                 wait();
             } catch (InterruptedException e) {
-                return; // ignore
+                System.out.println("Thread interruption");
+                // Restore interrupted state...
+                Thread.currentThread().interrupt();
             }
         }
     }
